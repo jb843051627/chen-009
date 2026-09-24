@@ -123,9 +123,8 @@ CREATE TABLE IF NOT EXISTS t_jas_pract_card (
   PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='鉴定人建档卡';
 
--- 初始档案数据（验收测试依赖 id=1 启用 / id=2 停用）
--- 验收测试依赖 t_jas_firm_doc 两条种子档案：id=0 在册、id=1 已注销（F2 坑5/坑3 的联动判定项）。
--- 在册鉴定人上限取 8/30/80 人，正压在 F2 坑2 的折算断言上（等于上限归高一档）。
+-- 初始档案数据：id=0 在册、id=1 已注销
+-- 在册鉴定人上限按 8/30/80 人分三档
 INSERT IGNORE INTO t_jas_firm_doc (id, site_no, site_name, site_type, road_name, th1_max, th2_max, th3_max, status, del_flag, create_by, create_time)
 VALUES (0, 'JD00', '临川市明正司法鉴定中心核准档案', '法医临床', '江南省—临川市—城东区', 8.00, 30.00, 80.00, 0, 0, 'seed', NOW()),
        (1, 'JD01', '旧济和司法鉴定所核准档案（已注销）', '声像资料', '江南省—临川市—城西区', 8.00, 30.00, 80.00, 1, 0, 'seed', NOW());
